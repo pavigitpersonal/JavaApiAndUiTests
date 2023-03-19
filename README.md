@@ -29,6 +29,8 @@ Reports are generated in build folder of `api-tests` module
 
 ## **Running UI tests**
 
+Set the path to browser drivers accordingly in `config.properties` file of `ui-tests` module.
+
 Browse through the ui-tests module and run the test suite from IntelliJ.
 
 Default browser value is set to `chrome`. Change the browser value accordingly to run the tests on specific browser.
