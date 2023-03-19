@@ -1,12 +1,13 @@
 
 ## **Features**
 
-1. Java 18
+1. Java 11
 2. Gradle Build Tool 8.0.2
 3. Selenium Webdriver
 4. TestNG
-5. Allure-reports
-5. Cross Browser Testing - Google Chrome, Firefox, Microsoft Edge
+5. Rest Assured
+6. Allure-reports
+7. Cross Browser Testing - Google Chrome, Firefox, Microsoft Edge
 
 ## **Setup project on machine to work**
 
