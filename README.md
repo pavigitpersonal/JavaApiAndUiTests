@@ -31,10 +31,10 @@ Reports are generated in build folder of `api-tests` module
 
 Browse through the ui-tests module and run the test suite from IntelliJ.
 
-Default browser value is set to _chrome_. Change the browser value accordingly to run the tests on specific browser.
+Default browser value is set to `chrome`. Change the browser value accordingly to run the tests on specific browser.
 Accepted values for browser parameter are: `chrome, firefox, msedge`
 
-To run the tests in headless mode, set the `headless` value to `true` in config.properties
+To run the tests in headless mode, set the `headless` value to `true` in `config.properties` file.
 
 To run the test suite from command line, use:
 
