@@ -1,0 +1,16 @@
+{
+  "testdata": [
+    {
+      "employee_name": "Pavi 1",
+      "employee_salary": 40000,
+      "employee_age": 35,
+      "profile_image": ""
+    },
+    {
+      "employee_name": "Pavi 2",
+      "employee_salary": 50000,
+      "employee_age": 40,
+      "profile_image": ""
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Employee API Test Suite">
+    <listeners>
+        <listener class-name="org.testng.reporters.EmailableReporter"/>
+        <listener class-name="org.testng.reporters.XMLReporter"/>
+        <listener class-name="org.testng.reporters.jq.Main"/>
+    </listeners>
+    <test name="Employee API Test">
+        <classes>
+            <class name="com.pavi.apiTests.EmployeeTests"/>
+        </classes>
+    </test>
+</suite>
