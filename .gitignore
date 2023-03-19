@@ -1,0 +1,5 @@
+src
+uitest/build/
+.gradle/
+.idea/
+api-tests/build

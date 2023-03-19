@@ -1,0 +1,43 @@
+plugins {
+    id 'java'
+}
+
+group 'com.pavi'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation group: 'org.testng', name: 'testng', version: '7.7.0'
+    testImplementation group: 'io.rest-assured', name: 'rest-assured', version: '4.4.0'
+    testImplementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.1.1'
+    testImplementation group: 'org.seleniumhq.selenium', name: 'selenium-api', version: '4.1.1'
+    testImplementation group: 'org.seleniumhq.selenium', name: 'selenium-chrome-driver', version: '4.1.1'
+    testImplementation group: 'org.seleniumhq.selenium', name: 'selenium-firefox-driver', version: '4.1.1'
+    testImplementation group: 'org.seleniumhq.selenium', name: 'selenium-edge-driver', version: '4.1.1'
+    testImplementation group: 'io.qameta.allure', name: 'allure-testng', version: '2.21.0'
+    testImplementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
+}
+
+test {
+    useTestNG() {
+        suites 'src/test/resources/testng.xml'
+        testLogging.showStandardStreams = true
+
+        systemProperty 'allure.results.directory', 'build/allure-results'
+        systemProperty 'allure.issues.tracker.pattern', 'https://your-issue-tracker.com/issue/{}'
+
+        doFirst {
+            // set up environment variable for browser
+            String browser = project.hasProperty("browser") ? project.getProperty("browser") : "chrome"
+
+            systemProperty "browser", browser
+
+            // delete old Allure results and report
+            delete fileTree(dir: 'build/allure-results')
+            delete fileTree(dir: 'build/reports/allure-report')
+        }
+    }
+}
