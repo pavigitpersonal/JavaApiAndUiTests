@@ -1,4 +1,4 @@
-uitest/build/
+ui-tests/build/
 .gradle/
 .idea/
 api-tests/build
