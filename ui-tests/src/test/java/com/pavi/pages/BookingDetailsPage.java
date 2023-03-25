@@ -70,7 +70,7 @@ public class BookingDetailsPage {
         }
 
         driver.findElement(By.id("contact-name")).clear();
-        driver.findElement(By.id("contact-name")).sendKeys(firstNames[0] + lastNames[0]);
+        driver.findElement(By.id("contact-name")).sendKeys(firstNames[0] + ' ' + lastNames[0]);
         driver.findElement(By.id("contact-mobile")).sendKeys("07519945637");
         driver.findElement(By.id("contact-email")).sendKeys("a@b.com");
         driver.findElement(By.id("contact-address1")).sendKeys("735 Burges Road");

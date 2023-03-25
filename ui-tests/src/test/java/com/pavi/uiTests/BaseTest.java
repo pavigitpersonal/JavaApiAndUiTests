@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeOptions;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
@@ -20,7 +21,6 @@ import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Date;
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
     protected WebDriver driver;
@@ -37,8 +37,8 @@ public class BaseTest {
             FileInputStream inputStream = new FileInputStream("src/test/resources/config.properties");
             config.load(inputStream);
         } catch (IOException e) {
-        e.printStackTrace();
-    }
+            e.printStackTrace();
+        }
     }
 
     @AfterSuite(alwaysRun = true)
@@ -50,37 +50,31 @@ public class BaseTest {
     @Parameters("browser")
     public void beforeTest(String browser) {
         String isHeadless = config.getProperty("headless").toLowerCase();
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--remote-allow-origins=*");
-        if(isHeadless.equalsIgnoreCase("true")) chromeOptions.addArguments("--headless");
 
         switch (browser) {
-            case "chrome":
-                String chromeDriverPath = config.getProperty("chrome.driver.path");
-                System.out.println("driver path = " + chromeDriverPath);
-                System.setProperty("webdriver.chrome.driver", config.getProperty("chrome.driver.path"));
+            case "chrome" -> {
+                ChromeOptions chromeOptions = new ChromeOptions();
+                chromeOptions.addArguments("--remote-allow-origins=*");
+                if (isHeadless.equalsIgnoreCase("true")) chromeOptions.addArguments("--headless");
+                WebDriverManager.chromedriver().setup();
                 driver = new ChromeDriver(chromeOptions);
-                break;
-            case "firefox":
+            }
+            case "firefox" -> {
+                WebDriverManager.firefoxdriver().setup();
                 FirefoxProfile profile = new FirefoxProfile();
                 profile.setPreference("toolkit.telemetry.shutdownPingSender.enabled", false);
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 firefoxOptions.setProfile(profile);
-                if(isHeadless.equalsIgnoreCase("true")) firefoxOptions.addArguments("--headless");
-                System.setProperty("webdriver.gecko.driver", config.getProperty("firefox.driver.path"));
+                if (isHeadless.equalsIgnoreCase("true")) firefoxOptions.addArguments("--headless");
                 driver = new FirefoxDriver(firefoxOptions);
-                break;
-            case "msedge":
+            }
+            case "msedge" -> {
+                WebDriverManager.edgedriver().setup();
                 EdgeOptions edgeOptions = new EdgeOptions();
-                edgeOptions.addArguments("--headless");
-                if(isHeadless.equalsIgnoreCase("true")) edgeOptions.addArguments("--headless");
-                System.setProperty("webdriver.edge.driver", config.getProperty("msedge.driver.path"));
+                if (isHeadless.equalsIgnoreCase("true")) edgeOptions.addArguments("--headless");
                 driver = new EdgeDriver(edgeOptions);
-                break;
-            default:
-                System.setProperty("webdriver.chrome.driver", config.getProperty("chrome.driver.path"));
-                driver = new ChromeDriver(chromeOptions);
-                break;
+            }
+            default -> System.out.println("Invalid browser specified");
         }
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         driver.manage().window().maximize();

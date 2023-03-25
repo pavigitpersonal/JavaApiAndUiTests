@@ -4,10 +4,11 @@
 1. Java 11
 2. Gradle Build Tool 8.0.2
 3. Selenium Webdriver
-4. TestNG
-5. Rest Assured
-6. Allure-reports
-7. Cross Browser Testing - Google Chrome, Firefox, Microsoft Edge
+4. WebDriverManager
+5. TestNG
+6. Rest Assured
+7. Allure-reports
+8. Cross Browser Testing - Google Chrome, Firefox, Microsoft Edge
 
 ## **Setup project on machine to work**
 
@@ -28,8 +29,6 @@ To run the test suite from command line, use:
 Reports are generated in build folder of `api-tests` module
 
 ## **Running UI tests**
-
-Set the path to browser drivers accordingly in `config.properties` file of `ui-tests` module.
 
 Browse through the ui-tests module and run the test suite from IntelliJ.
 

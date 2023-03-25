@@ -2,3 +2,4 @@ ui-tests/build/
 .gradle/
 .idea/
 api-tests/build
+build/
